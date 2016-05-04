@@ -2,7 +2,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'myApp' is the name of this angular module example 
 // the 2nd parameter is an array of 'requires'
-angular.module('myApp', ['ionic', 'myApp.controllers'])
+angular.module('gpstracker', ['ionic', 'gpstracker.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,7 +38,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers'])
     url: '/nav',
     views: {
       'menuContent' :{
-        controller: 'NavCtrl',
+        controller: 'LoginHomeCtrl',
         templateUrl: "templates/map.html"
       }
     }
