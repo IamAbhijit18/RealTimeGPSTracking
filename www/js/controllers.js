@@ -30,15 +30,6 @@ gpsapp.controller('LoginHomeCtrl', function($scope, $ionicLoading, $compile) {
 gpsapp.controller('NavCtrl', function($scope, $ionicLoading, $compile) {
     var myLatLng, targetLatLng;
     var map;
-    // userLocations.init()
-    //     .then(function (_data) {
-    //         console.log(_data.data.deployment_id);
-    //         userLocations.all().then(function (_data) {
-    //             $scope.userLocationsdata = _data.data;
-    //         })
-    //     }, function (_error) {
-    //         console.log("error");
-    //     });
     
     function initializeRoute() {
     navigator.geolocation.getCurrentPosition(function(position) {
