@@ -34,17 +34,8 @@ angular.module('gpstracker', ['ionic', 'gpstracker.controllers'])
       }
     }
   })
-  .state('sidemenu.nav', {
-    url: '/nav',
-    views: {
-      'menuContent' :{
-        controller: 'LoginHomeCtrl',
-        templateUrl: "templates/map.html"
-      }
-    }
-  })
   .state('sidemenu.getnav', {
-    url: '/nav',
+    url: '/getnav',
     views: {
       'menuContent' :{
         controller: 'NavCtrl',
