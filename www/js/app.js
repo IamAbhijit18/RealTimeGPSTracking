@@ -1,8 +1,8 @@
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'myApp' is the name of this angular module example 
+// 'myApp' is the name of this angular module example
 // the 2nd parameter is an array of 'requires'
-angular.module('myApp', ['ionic', 'myApp.controllers'])
+angular.module('gpstracker', ['ionic', 'gpstracker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -18,7 +18,6 @@ angular.module('myApp', ['ionic', 'myApp.controllers'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/side/home')
 
   $stateProvider
   .state('sidemenu', {
@@ -30,26 +29,27 @@ angular.module('myApp', ['ionic', 'myApp.controllers'])
     url: '/home',
     views: {
       'menuContent' :{
-        templateUrl: "templates/home.html"
+        templateUrl: "app/Home/home.html"
       }
     }
   })
-  .state('sidemenu.nav', {
-    url: '/nav',
+ .state('sidemenu.users', {
+    url: '/userlist/:userId',
     views: {
       'menuContent' :{
-        controller: 'NavCtrl',
-        templateUrl: "templates/map.html"
+        templateUrl: "app/user/users.html"
       }
     }
   })
-  .state('sidemenu.getnav', {
-    url: '/nav',
+  .state('sidemenu.map', {
+    url: '/map/:targetUserId:',
     views: {
       'menuContent' :{
-        controller: 'NavCtrl',
-        templateUrl: "templates/map.html"
+        templateUrl: "app/Navigation/map.html"
       }
     }
   })
-})
+
+  // Providing a default route incase if an invalid url is entered
+  $urlRouterProvider.otherwise('/side/home');
+});
