@@ -4,3 +4,7 @@
 node_modules/
 platforms/
 plugins/
+
+
+# VS Code debugging directory
+.vscode

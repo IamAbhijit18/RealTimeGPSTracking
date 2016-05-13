@@ -1,0 +1,11 @@
+<ion-view view-title="List of users you can track" ng-controller="userCtrl as vm">
+    <ion-content class="has-Header">
+        <div class='list'>
+          <a class="item item-icon-right" ng-repeat="user in vm.permittedUsers"
+              ui-sref="sidemenu.map({ targetUserId: user.userId })" >
+              {{user.LastName + " " + user.FirstName}}
+              <i class="icon ion-arrow-right-b icon-accessory"></i>
+          </a>
+        </div>
+    </ion-content>
+</ion-view>

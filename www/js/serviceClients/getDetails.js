@@ -1,24 +1,36 @@
-var dburl = 'mongodb://localhost:27017/testdb';
-var dbserverurl = 'mongodb://localhost:27017/';
+var serviceAPIUrl = 'http://localhost:3000/';
 (function () {
-    var app = angular.module('gpstracker');
-    app.factory('gpsClient', [gpsClient]);
-    function gpsClient() {
-        var users = [];
-
-        return {
-            getUsers: function ($http) {
-                return $http.get("http://localhost:3000/getuserlocations").then(function (response) {
-                    users = response;
-                    return users;
-                });
-            },
-            getUserLocation: function (userId, $http) {
-                return $http.get("http://localhost:3000/getuserlocations/"+userId).then(function (response) {
-                    users = response;
-                    return users;
-                });
-            }
-        }
+  var app = angular.module('gpstracker')
+  app.factory('gpsClient', ['$http', '$q', gpsClient])
+  function gpsClient ($http, $q) {
+    function getUsres () {
+      var deferred = $q.defer()
+      $http.get(serviceAPIUrl + 'getuserlocations')
+        .success(function (response) {
+          deferred.resolve(response)
+        })
+      return deferred.promise
     }
+    function getPermittedUserdetails (userId) {
+      var deferred = $q.defer()
+      $http.get(serviceAPIUrl + 'getpermitteduserdetail/' + userId)
+        .success(function (response) {
+          deferred.resolve(response)
+        })
+      return deferred.promise
+    }
+    function getUserLocation (userId) {
+      var deferred = $q.defer()
+      $http.get(serviceAPIUrl + 'getuserlocations/' + userId)
+        .success(function (response) {
+          deferred.resolve(response)
+        })
+      return deferred.promise
+    }
+    return {
+      getUsers: getUsres,
+      getPermittedUserdetails: getPermittedUserdetails,
+      getUserLocation: getUserLocation
+    }
+  }
 })();
